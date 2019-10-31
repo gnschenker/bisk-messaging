@@ -1,0 +1,40 @@
+= BISK Messaging Nuget Package 
+
+This is the solution containing the code for the BISK messaging abstraction. Currently the only implementation is RabbitMQ. There are test projects for synchronous and asynchronous publishing of messages as well as consuming the messages.
+
+== Running the synchronous publisher
+
+. Navigate into the solution folder
+. Run the following command to start the application:
++
+[source]
+--
+docker-compose up --build -d
+--
++
+This will start Rabbit MQ, a test publisher and a test consumer.
+
+. Check that all services are up:
++
+[source]
+--
+docker-compose ps
+--
++
+you should see:
++
+[source]
+--
+        Name                       Command                  State                         Ports
+ ---------------------------------------------------------------------------------------------------------------
+messaging_consumer_1    dotnet run EasyNetQ              Up
+messaging_publisher_1   dotnet run EasyNetQ              Up
+messaging_rabbitmq_1    docker-entrypoint.sh rabbi ...   Up (healthy)   15671/tcp, 0.0.0.0:15672->15672/tcp, ...
+--
+
+. Check and follow the logs to see if everything is ok:
++
+[source]
+--
+docker-compose logs --follow
+--

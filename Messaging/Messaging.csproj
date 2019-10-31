@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Bisk.Messaging</AssemblyName>
+    <RootNamespace>Bisk.Messaging</RootNamespace>
+    <Authors>Gabriel Schenker</Authors>
+    <Company>ViceSoftware</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EasyNetQ" Version="3.7.1" />
+  </ItemGroup>
+
+</Project>

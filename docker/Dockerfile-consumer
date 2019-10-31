@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0
+WORKDIR /app
+COPY Messaging/Messaging.csproj Messaging/
+COPY TestConsumer/TestConsumer.csproj TestConsumer/
+COPY TestMessages/TestMessages.csproj TestMessages/
+RUN dotnet restore TestConsumer/TestConsumer.csproj
+COPY . .
+WORKDIR /app/TestConsumer
+CMD dotnet run
