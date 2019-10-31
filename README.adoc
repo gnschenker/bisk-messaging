@@ -2,7 +2,42 @@
 
 This is the solution containing the code for the BISK messaging abstraction. Currently the only implementation is RabbitMQ. There are test projects for synchronous and asynchronous publishing of messages as well as consuming the messages.
 
-== Running the synchronous publisher
+== Building the Nuget Package
+
+WARNING: If you're using a Mac and Visual Studio for Mac, you have to use the `nuget` tool to create the package. Please refer to this article: https://docs.microsoft.com/en-us/xamarin/cross-platform/app-fundamentals/nuget-multiplatform-libraries/existing-library
+
+. Open the solution in Visual Studio 2019
+. Right click the `Messaging` project and select *Properties*
+. Navigate to the *Package* tab and adjust the *Package version*. 
++
+NOTE: On each change the version of the Nuget package needs to be increased otherwise the change is ignored by existing consumers of the package.
+
+== Adding the Nuget Package to a local Nuget Repo
+
+. Make sure you have the nuget CLI installed
+. Create a folder where the Nuget repo is supposed to be, e.g. on Windows `d:\nuget_repo`
+. Deploy the Nuget package to the local repo:
++
+[source]
+--
+nuget <path to *.nuspec file> -source <path to nuget repo>
+--
++
+Where `<path to *.nuspec file>` is the path and file name of the `nuspec` file created by Visual Studio, and `<path to nuget repo>` is the path to your local Nuget repo (e.g. `d:\nuget_repo` in my case)
+
+== Adding a Nuget Package from your local Nuget Repo
+To add a Nuget package from your local Nuget repo to a project use the `-source` parameter in the `dotnet add packag` command:
+
+[source]
+--
+dotnet add package bisk.messaging --version 1.0.2 --source d:\\nuget_repo
+--
+
+WARNING: If you omit the `--source` parameter the `dotnet` tool will try to add the package from the public Nuget repo.
+
+== Testing the Messaging Code
+
+=== Running the Synchronous Publisher
 
 . Navigate into the solution folder
 . Run the following command to start the application:
@@ -37,4 +72,41 @@ messaging_rabbitmq_1    docker-entrypoint.sh rabbi ...   Up (healthy)   15671/tc
 [source]
 --
 docker-compose logs --follow
+--
+
+=== Running the Asynchronous Publisher
+
+. Navigate into the solution folder
+. Run the following command to start the application:
++
+[source]
+--
+docker-compose -f docker-compose-async.yml up --build -d
+--
++
+This will start Rabbit MQ, a test publisher and a test consumer.
+
+. Check that all services are up:
++
+[source]
+--
+docker-compose -f docker-compose-async.yml ps
+--
++
+you should see:
++
+[source]
+--
+        Name                       Command                  State                         Ports
+ ---------------------------------------------------------------------------------------------------------------
+messaging_consumer_1    dotnet run EasyNetQ              Up
+messaging_publisher_1   dotnet run EasyNetQ              Up
+messaging_rabbitmq_1    docker-entrypoint.sh rabbi ...   Up (healthy)   15671/tcp, 0.0.0.0:15672->15672/tcp, ...
+--
+
+. Check and follow the logs to see if everything is ok:
++
+[source]
+--
+docker-compose -f docker-compose-async.yml logs --follow
 --
