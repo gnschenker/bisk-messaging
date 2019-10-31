@@ -21,7 +21,7 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-    command: dotnet run EasyNetQ
+    command: dotnet run 
 
   consumer:
     image: acme/test-consumer:1.0
@@ -31,5 +31,5 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
-    command: dotnet run EasyNetQ
+    command: dotnet run 
     

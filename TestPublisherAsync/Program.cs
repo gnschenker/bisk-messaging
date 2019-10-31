@@ -40,7 +40,7 @@ namespace TestPublisher
                         {
                             if(task.IsCompleted)
                             {
-                                Console.WriteLine($"*** {count} completed");
+                                Console.WriteLine($"ASYNC - *** {message} ({count}) completed");
                             }
                             if(task.IsFaulted)
                             {

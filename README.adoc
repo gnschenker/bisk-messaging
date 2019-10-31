@@ -37,7 +37,7 @@ WARNING: If you omit the `--source` parameter the `dotnet` tool will try to add 
 
 == Testing the Messaging Code
 
-=== Running the Synchronous Publisher
+=== Running the Synchronous Publisher and Consumer Pair
 
 . Navigate into the solution folder
 . Run the following command to start the application:
@@ -74,7 +74,14 @@ messaging_rabbitmq_1    docker-entrypoint.sh rabbi ...   Up (healthy)   15671/tc
 docker-compose logs --follow
 --
 
-=== Running the Asynchronous Publisher
+. Tear down the app:
++
+[source]
+--
+docker-compose down -v
+--
+
+=== Running the Asynchronous Publisher and Consumer Pair
 
 . Navigate into the solution folder
 . Run the following command to start the application:
@@ -84,7 +91,7 @@ docker-compose logs --follow
 docker-compose -f docker-compose-async.yml up --build -d
 --
 +
-This will start Rabbit MQ, a test publisher and a test consumer.
+This will start Rabbit MQ, aa async. test publisher and an async. test consumer.
 
 . Check that all services are up:
 +
@@ -109,4 +116,11 @@ messaging_rabbitmq_1    docker-entrypoint.sh rabbi ...   Up (healthy)   15671/tc
 [source]
 --
 docker-compose -f docker-compose-async.yml logs --follow
+--
+
+. Tear down the app:
++
+[source]
+--
+docker-compose -f docker-compose-async.yml down -v
 --

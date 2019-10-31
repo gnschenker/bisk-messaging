@@ -25,15 +25,15 @@ services:
       RABBIT_HOST: rabbitmq
       RABBIT_PUBLISHER_CONFIRM: "true"
       RABBIT_TIMEOUT: 10
-    command: dotnet run EasyNetQ
+    command: dotnet run 
 
   consumer:
-    image: acme/test-consumer:1.0
+    image: acme/test-consumer-async:1.0
     build: 
       context: .
-      dockerfile: docker/Dockerfile-consumer
+      dockerfile: docker/Dockerfile-async-consumer
     depends_on:
       rabbitmq:
         condition: service_healthy
-    command: dotnet run EasyNetQ
+    command: dotnet run 
     

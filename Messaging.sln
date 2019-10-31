@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{A070C6
 		docker\Dockerfile-publisher = docker\Dockerfile-publisher
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumerAsync", "TestConsumerAsync\TestConsumerAsync.csproj", "{DFA76E64-344F-4039-BD0D-02A53760B040}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{F909625E-0BC2-4366-8C62-4E44BA26061D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F909625E-0BC2-4366-8C62-4E44BA26061D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F909625E-0BC2-4366-8C62-4E44BA26061D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA76E64-344F-4039-BD0D-02A53760B040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA76E64-344F-4039-BD0D-02A53760B040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA76E64-344F-4039-BD0D-02A53760B040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA76E64-344F-4039-BD0D-02A53760B040}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
